@@ -5,7 +5,6 @@ For more information about me, please visit my LinkedIn:
 
 [![LinkedIn][LinkedIn.js]][LinkedIn-url]
 
-
 <div align="center">
   <h3 align="center">A brief Read.me introducing the project and its contents</h3>
     <br />
@@ -14,36 +13,96 @@ For more information about me, please visit my LinkedIn:
 
 
 <!-- ABOUT THE PROJECT -->
+
+## Backgroud Terminology: 
+
+
+
 ## About The Project
 
-  In thi project, machine learning is used to find the best polynomial model to fit a given dataset. Specifically, we will use 6-fold cross-validation on the training data to select the optimal polynomial degree value d from the set {0, 1, 2, 3, 4, 5, ..., 12}. We will also use 6-fold cross-validation on the training data to select the optimal regularization parameter λ from the set {0, exp(−25), exp(−20), exp(−14), exp(−7), exp(−3), 1, exp(3), exp(7)}. Once the optimal values of d and λ have been found, we will learn the regularized coefficient-weights of a 12-degree polynomial using all the training data. Finally, we will evaluate the resulting polynomial model on the training and test data, and report the training and test RMSE.
 
+  In thi project, machine learning is used to find the best polynomial model to fit a given dataset. The project is divided into two parts:
+  
+<b> Finding the optimal values d* and  λ*  for each part </b>:
+  
+1. <b> First Part</b>
+
+we will use 6-fold cross-validation on the training data to select the optimal polynomial degree value d from the set {0, 1, 2, 3, 4, 5, ..., 12} , with λ set to zero.
+
+2. <b> Second Part:</b>
+
+we will use 6-fold cross-validation on the training data to select the optimal regularization parameter λ from the set {0, exp(−25), exp(−20), exp(−14), exp(−7), exp(−3), 1, exp(3), exp(7)} with the degree d set to 12.
+
+<b> Learning the polynomials' weights "coefficients" using all the training data:</b>
+
+Once the optimal values d*and λ* for each part have been found, we will learn the regularized coefficient weights of the polynomials found in each part using all the training data.
+ 
+ <b> Testing the polynomials' accuracy using the testing data </b>
+ 
+ Finally, we will evaluate the resulting polynomial model on the training and test data, and report the training and test RMSE.
+
+  
+## Results: 
+the results of this project include: 
+
+1.  Averages of the RMSE values obtained during the 6-fold CV for each case 
+2.the optimal degree d∗ and regularization parameter λ∗ obtained via the 6-fold CV 
+3.the coefficient-weights of the d∗-degree polynomial and the λ∗-regularized 12-degree learned on all the training data;
+4.the training and test RMSE of that final, learned polynomials: 
+5.the 2 plots containing all the training data along with the resulting polynomial curves for d∗ and λ∗, for the range of years 1968-2023 as input:
+ 
+### Dataset
+
+1. The dataset represents an indicator that measures the proportion of the working-age population within the total population of the United States of America over time
+note: "indicator" refers to a measure or metric used to track a specific aspect or phenomenon.
+3. The working-age population is between ages 15 to 64
+4. The indicator measures working-age population proportion for non-consecutive years between 1970 and 2021.
+5. The only input attribute is the year
+6. The output is the (numerical) indicator of the working-age population for the given input year
+7. The files train.dat and test.dat contain the training and test datasets, respectively
+8. Each dataset consists of two columns, the first corresponding to the calendar-year values (input) and the second column is the indicator of the working-age population (output)
+
+### Scaling
+
+Data is normalized using the "z-score" normalization.  This will help the learning algorithm to output a hypothesis in a more numerically robust and accurate way. Z-score normalization involves applying a simple linear transformation to the input and output values separately, resulting in the average of the values being 0 and the standard deviation being 1. 
+
+The formula to calculating the z-score of a point, x, is as follows:
+
+![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/a9cead32-c7a6-41e0-87a2-939383d73d90)
 
 ### PseudoCode used:
 
-Pseudocode for calculating the optimal Parameter
-1. Set the number of folds, k, to 6.
-2. Initialize a KFold object with k number of splits and shuffle=False.
-3. Define a range of degrees from 0 to 12., or store the lambda values in a list
-4. Initialize an empty list called test_rmse.
-5. Loop over the degrees/lamdas:
-a. Initialize an empty list called test_rmse_fold.
-b. Loop over the k folds in the KFold object.
-i. Split the data into training and testing sets for the current fold.
-ii. Define scaler functions for scaling the data for the current fold.
-iii. Scale the training and testing data for the current fold.
-iv. Import the Ridge regression class on the training data for the current fold.
-v. Transform the training and testing data using PolynomialFeatures with the current
-degree.
-vi. Fit the model to the training data for the current fold
-vii. Compute the testing RMSE for the current fold and append it to test_rmse_fold.
-viii. Print the coefficients for the current degree.
-c. Compute the testing RMSE for the current parameter and append it to test_rmse.
-d.. Determine the optimal degree by finding the index of the minimum value in test_rmse.
-e. Print the optimal degree.
-6. Compute the average testing RMSE for all degrees.
-7. Plot the average testing RMSE for each degree.
-Pseudocode for Training the model on the optimal parameter found:
+<b> Pseudocode for calculating the optimal Parameter </b> 
+<ol>
+  <li>Set the number of folds, k, to 6.</li>
+  <li>Initialize a KFold object with k number of splits and shuffle=False.</li>
+  <li>Define a range of degrees from 0 to 12., or store the lambda values in a list</li>
+  <li>Initialize an empty list called test_rmse.</li>
+  <li>Loop over the degrees/lamdas:
+    <ol type="a">
+      <li>Initialize an empty list called test_rmse_fold.</li>
+      <li>Loop over the k folds in the KFold object.
+        <ol type="i">
+          <li>Split the data into training and testing sets for the current fold.</li>
+          <li>Define scaler functions for scaling the data for the current fold.</li>
+          <li>Scale the training and testing data for the current fold.</li>
+          <li>Import the Ridge regression class on the training data for the current fold.</li>
+          <li>Transform the training and testing data using PolynomialFeatures with the current degree.</li>
+          <li>Fit the model to the training data for the current fold</li>
+          <li>Compute the testing RMSE for the current fold and append it to test_rmse_fold.</li>
+          <li>Print the coefficients for the current degree.</li>
+        </ol>
+      </li>
+      <li>Compute the testing RMSE for the current parameter and append it to test_rmse.</li>
+      <li>Determine the optimal degree by finding the index of the minimum value in test_rmse.</li>
+      <li>Print the optimal degree.</li>
+    </ol>
+  </li>
+  <li>Compute the average testing RMSE for all degrees.</li>
+  <li>Plot the average testing RMSE for each degree..</li>
+</ol>
+
+<b> Pseudocode for Training the model on the optimal parameter found: </b>
 1. Load the training and test data.
 2. Separate the input and output variables from the training and test sets.
 3. Define scaler functions for scaling the input variables.
@@ -62,31 +121,16 @@ Results:
 (1) the averages of the RMSE values obtained during the 6-fold CV for each case and
 (2) the optimal degree d∗ and regularization parameter λ∗ obtained via the 6-fold CV;
 
+<!-- Dataset -->
 
 
-### Scaling
-
-
+### Built With
 The frameworks and libraries used within this project are:
 * [![Scikit-learn][scikit-learn.js]][scikit-learn-url]
 * [![TensorFlow][Tensorflow.js]][Tensorflow-url]
 * [![NumPy][NumPy.js]][NumPy-url]
 * [![Matplotlib][Matplotlib.js]][Matplotlib-url]
 * [![Open In Colab](https://img.shields.io/badge/Open%20In-Colab-yellowgreen?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/)
-
-
-<!-- Dataset -->
-### Dataset
-
-Here's a summary of the Dataset used in the project:
-
-1. Given a dataset of the indicator of working-age population in the U.S.A. through time
-2. The working-age population is defined as those aged 15 to 64
-3. The indicator measures the share of the working-age population in the total population for a number of years between 1970 and 2021, not necessarily consecutive
-4. The only input attribute is the year
-5. The output is the (numerical) indicator of the working-age population for the given input year
-6. The files train.dat and test.dat contain the training and test datasets, respectively
-7. Each dataset consists of two columns, the first corresponding to the calendar-year values (input) and the second column is the indicator of the working-age population (output)
 
 
 <!-- GETTING STARTED -->
