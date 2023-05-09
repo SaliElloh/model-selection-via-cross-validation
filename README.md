@@ -1,5 +1,5 @@
 # model-selection-via-cross-validation
-The objective of this project was to perform regression learning on a U.S.A Working-Age Population Data set using polynomial curve fitting and root mean squared error (RMSE) as the performance metric. Additionally, cross-validation was employed for selecting the best model.
+The objective of this project was to perform Linear Regression and Ridge Regression on a U.S.A Working-Age Population Data set using polynomial curve fitting and root mean squared error (RMSE) as the performance metric. Cross-validation was employed for selecting the best model.
 
 For more information about me, please visit my LinkedIn:
 
@@ -11,56 +11,48 @@ For more information about me, please visit my LinkedIn:
   </p>
 </div>
 
-
 <!-- ABOUT THE PROJECT -->
 
 ## Backgroud Terminology: 
 
+To understand what Linear Regression and Ridge Regression (L2 Regularization) are, please visit the following links: 
+
+Linear Regression: 
+https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-linear-regression/#:~:text=Linear%20regression%20is%20an%20algorithm,machine%20learning%20for%20predictive%20analysis.
+
+Ridge Regression:
+https://vitalflux.com/ridge-regression-concepts-python-example/
 
 
 ## About The Project
 
-
-  In thi project, machine learning is used to find the best polynomial model to fit a given dataset. The project is divided into two parts:
+  In this project, machine learning is used to find the best polynomial model to fit a given dataset. The project is divided into two parts:
   
-<b> Finding the optimal values d* and  λ*  for each part </b>:
+<b> 1. Finding the optimal values d* and  λ*  for each part </b>:
   
-1. <b> First Part</b>
+<b> a. Part 1: Using Linear Regression to find the optimal Degree d </b>:
 
-we will use 6-fold cross-validation on the training data to select the optimal polynomial degree value d from the set {0, 1, 2, 3, 4, 5, ..., 12} , with λ set to zero.
+we will use 6-fold cross-validation on the training data to select the optimal polynomial degree value d from the set {0, 1, 2, 3, 4, 5, ..., 12}. In linear regression there is regularization parameter λ, so it is set equal to zero. 
 
-2. <b> Second Part:</b>
+<b> b. Part 2: Using Ridge Regression to find the optimal regularization parameter λ </b>:
 
 we will use 6-fold cross-validation on the training data to select the optimal regularization parameter λ from the set {0, exp(−25), exp(−20), exp(−14), exp(−7), exp(−3), 1, exp(3), exp(7)} with the degree d set to 12.
 
-<b> Learning the polynomials' weights "coefficients" using all the training data:</b>
+<b> 2. Learning the polynomials' weights "coefficients" using all the training data:</b>
 
-Once the optimal values d*and λ* for each part have been found, we will learn the regularized coefficient weights of the polynomials found in each part using all the training data.
+Once the optimal values d* and λ* for each part have been found, we will learn the regularized coefficient weights of the polynomials found in each part using all the training data.
  
- <b> Testing the polynomials' accuracy using the testing data </b>
+ <b> 3. Testing the polynomials' accuracy using the testing data </b>
  
  Finally, we will evaluate the resulting polynomial model on the training and test data, and report the training and test RMSE.
 
-  
-## Results: 
-the results of this project include: 
-
-1.  Averages of the RMSE values obtained during the 6-fold CV for each case 
-
-2. the optimal degree d∗ and regularization parameter λ∗ obtained via the 6-fold CV 
-
-3. the coefficient-weights of the d∗-degree polynomial and the λ∗-regularized 12-degree learned on all the training data
-
-4.the training and test RMSE of that final, learned polynomials
-
-5. The 2 plots containing all the training data along with the resulting polynomial curves for d∗ and λ∗, for the range of years 1968-2023 as input
- 
+   
 ### Dataset
 
 1. The dataset represents an indicator that measures the proportion of the working-age population within the total population of the United States of America over time
 note: "indicator" refers to a measure or metric used to track a specific aspect or phenomenon.
 3. The working-age population is between ages 15 to 64
-4. The indicator measures working-age population proportion for non-consecutive years between 1970 and 2021.
+4. The indicator measures the working-age population proportion for non-consecutive years between 1970 and 2021.
 5. The only input attribute is the year
 6. The output is the (numerical) indicator of the working-age population for the given input year
 7. The files train.dat and test.dat contain the training and test datasets, respectively
@@ -76,7 +68,7 @@ The formula to calculating the z-score of a point, x, is as follows:
 
 ### PseudoCode used:
 
-<b> Pseudocode for calculating the optimal Parameter </b> 
+<b> Pseudocode for perform cross validation to find the optimal parameter d and lambda (used in file “CVfor0to12.py” and “CVfor12Only.py”)</b> 
 <ol>
   <li>Set the number of folds, k, to 6.</li>
   <li>Initialize a KFold object with k number of splits and shuffle=False.</li>
@@ -106,7 +98,7 @@ The formula to calculating the z-score of a point, x, is as follows:
   <li>Plot the average testing RMSE for each degree..</li>
 </ol>
 
-<b> Pseudocode for Training the model on the optimal parameter found: </b>
+<b> Pseudocode for Training the model on the optimal parameter d* and lambda* (used in files “Optimal_Degree_trained.py” and “Optimal_alpha_trained.py”: </b>
 1. Load the training and test data.
 2. Separate the input and output variables from the training and test sets.
 3. Define scaler functions for scaling the input variables.
@@ -120,10 +112,44 @@ include the optimal parameter found as part of the ridge regression model
 10. Evaluate the model's training RMSE and testing RMSE
 11. print the coefficients for the optimal parameter model
 12. Plot the training and test data, the fitted Ridge regression model, and the resulting polynomial
-curve.
-Results:
-(1) the averages of the RMSE values obtained during the 6-fold CV for each case and
-(2) the optimal degree d∗ and regularization parameter λ∗ obtained via the 6-fold CV;
+Curve.
+
+## Results: 
+the results of this project include: 
+
+1. Averages of the RMSE values obtained during the 6-fold CV for each case plotted against the optimal degree d* and regularization parameter  λ∗ obtained via the 6-fold CV, separately:
+
+
+
+
+
+
+2. the coefficient-weights of the d∗-degree polynomial and the λ∗-regularized 12-degree learned on all the training data
+
+Coefficients of Optimal Degree (6):
+
+
+Coefficients of Optimal Alpha (e^-3):
+
+
+
+
+ 4. the training and test RMSE of that final, learned polynomials, using the training and testing data:
+
+Optimal Alpha e^-3:
+
+
+Optimal Degree 6:
+
+
+ 5.  the 2 plots containing all the training data along with the resulting polynomial curves for d∗ and λ∗, for the range of years 1968-2023 as input:
+
+Polynomial plots of the optimal degrees: 
+Optimal degree (6):
+
+ Optimal alpha e^-3:
+
+
 
 <!-- Dataset -->
 
@@ -144,40 +170,31 @@ To get the project running, there's a couple of programs and steps needed. here 
 
 ### Prerequisites
 
-If using Google colab to test the project, you need:
-
-1. a Google colab account
-2. Access to a GPU
-3. Internet/Wi-Fi
-
-If you plan on running it on python, you need to install on your computer the following:
-
-1. Python
-2. pip 
-3. PyCharm 
-4. Tensorflow, Keras, NumPy, Matplotlib
-
+Python: PyCharm is an IDE for Python development. 
+PyCharm:  you can download Pycahrm from JetBrains website.
+Operating system: PyCharm is available for Windows, macOS, and Linux. 
+Hardware requirements: PyCharm has minimum hardware requirements, including a multi-core processor, at least 4 GB of RAM, and a minimum screen resolution of 1024x768.
+ Tensorflow, Scikit-learn, NumPy, Matplotlib installed on your computer
 
 ### Steps to run the code:
 
-1. Download zip file
-2. In the file, you’ll find 6 files, titled:
+1. Download the “model-selection-via-cross-validation” zip file. 
+2. Extract all files found in the zip file:
+    In the file, you’ll find 6 files, titled:
 
-     a. CVfor0to12: performs the k fold cv using the given training data to select the optimal
-degree
-
-      b. Optimal Degree_trained: after finding d*, this trains all the data on the optimal degree found
+     a. CVfor0to12:  performs the k fold cv using the given training data to select the optimal
+degree.
+      b. Optimal Degree_trained: after finding d*, perform linear regression for  all the data using the optimal degree found: finds the polynomial coefficients, and fit
       
       c. CVfor12Only: performs k fold cv to select the optimal regularizer value, λ*
       
       d. Optimal alpha_trained: performs ridge regression for λ* selected using all the data
       
-      e. Test.csv: test data
+      e. Test.csv: contains all the test data used in the project
       
-      f. Train.csv: training data
+      f. Train.csv: contains all the training data used in the project
       
-3.Download the files. All program code is in python
-
+3. Run each file separately to get the final results of the project
 
 <!-- NEW LABELS IMAGE EXAMPLES -->
 ## Image examples
@@ -212,5 +229,13 @@ Sali E-loh - [@Sali El-loh](https://www.linkedin.com/in/salielloh12/) - ellohsal
 [Matplotlib-url]: https://matplotlib.org/
 [scikit-learn.js]: https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white
 [scikit-learn-url]:https://scikit-learn.org/
+
+
+
+
+
+
+
+
 
 
