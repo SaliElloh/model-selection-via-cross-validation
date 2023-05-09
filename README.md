@@ -46,10 +46,14 @@ Once the optimal values d*and λ* for each part have been found, we will learn t
 the results of this project include: 
 
 1.  Averages of the RMSE values obtained during the 6-fold CV for each case 
-2.the optimal degree d∗ and regularization parameter λ∗ obtained via the 6-fold CV 
-3.the coefficient-weights of the d∗-degree polynomial and the λ∗-regularized 12-degree learned on all the training data;
-4.the training and test RMSE of that final, learned polynomials: 
-5.the 2 plots containing all the training data along with the resulting polynomial curves for d∗ and λ∗, for the range of years 1968-2023 as input:
+
+2. the optimal degree d∗ and regularization parameter λ∗ obtained via the 6-fold CV 
+
+3. the coefficient-weights of the d∗-degree polynomial and the λ∗-regularized 12-degree learned on all the training data
+
+4.the training and test RMSE of that final, learned polynomials
+
+5. The 2 plots containing all the training data along with the resulting polynomial curves for d∗ and λ∗, for the range of years 1968-2023 as input
  
 ### Dataset
 
