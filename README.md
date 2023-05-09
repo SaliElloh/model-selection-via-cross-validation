@@ -7,7 +7,9 @@ For more information about me, please visit my LinkedIn:
 
 <!-- ABOUT THE PROJECT -->
 
-## Backgroud Terminology: 
+## About The Project:
+
+### Backgroud Terminology: 
 
 It's important to have a good idea about Linear Regression and Ridge Regression to understand the terminology used throughout this project.
 
@@ -18,9 +20,6 @@ https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-linear-
 
 Ridge Regression:
 https://vitalflux.com/ridge-regression-concepts-python-example/
-
-
-## About The Project:
 
 ### Introduction:
 <ol>
