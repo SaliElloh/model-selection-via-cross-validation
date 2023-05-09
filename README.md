@@ -5,17 +5,13 @@ For more information about me, please visit my LinkedIn:
 
 [![LinkedIn][LinkedIn.js]][LinkedIn-url]
 
-<div align="center">
-  <h3 align="center">A brief Read.me introducing the project and its contents</h3>
-    <br />
-  </p>
-</div>
-
 <!-- ABOUT THE PROJECT -->
 
 ## Backgroud Terminology: 
 
-To understand what Linear Regression and Ridge Regression (L2 Regularization) are, please visit the following links: 
+It's important to have a good idea about Linear Regression and Ridge Regression to understand the terminology used throughout this project.
+
+Please visit the following links for a more detailed explanation of each concept:
 
 Linear Regression: 
 https://www.spiceworks.com/tech/artificial-intelligence/articles/what-is-linear-regression/#:~:text=Linear%20regression%20is%20an%20algorithm,machine%20learning%20for%20predictive%20analysis.
@@ -24,30 +20,29 @@ Ridge Regression:
 https://vitalflux.com/ridge-regression-concepts-python-example/
 
 
-## About The Project
+## About The Project:
 
-  In this project, machine learning is used to find the best polynomial model to fit a given dataset. The project is divided into two parts:
+### Introduction:
+<ol>
+In this project, machine learning is used to find the best polynomial model to fit a given dataset. The project is divided into the following:
   
-<b> 1. Finding the optimal values d* and  λ*  for each part </b>:
-  
-<b> a. Part 1: Using Linear Regression to find the optimal Degree d </b>:
+<li><b> Finding the optimal values d* and  λ*  for each part </b>:</li>
+ 
+<ol type="a">
+<li><b>Part 1: Using Linear Regression to find the optimal Degree d </b>:</li>
+  we will use 6-fold cross-validation on the training data to select the optimal polynomial degree value d from the set {0, 1, 2, 3, 4, 5, ..., 12}. In linear regression there is regularization parameter λ, so it is set equal to zero. 
 
-we will use 6-fold cross-validation on the training data to select the optimal polynomial degree value d from the set {0, 1, 2, 3, 4, 5, ..., 12}. In linear regression there is regularization parameter λ, so it is set equal to zero. 
+<li><b> b. Part 2: Using Ridge Regression to find the optimal regularization parameter λ: </b>:</li>
+  we will use 6-fold cross-validation on the training data to select the optimal regularization parameter λ from the set {0, exp(−25), exp(−20), exp(−14), exp(−7), exp(−3), 1, exp(3), exp(7)} with the degree d set to 12.
+  </ol>
 
-<b> b. Part 2: Using Ridge Regression to find the optimal regularization parameter λ </b>:
-
-we will use 6-fold cross-validation on the training data to select the optimal regularization parameter λ from the set {0, exp(−25), exp(−20), exp(−14), exp(−7), exp(−3), 1, exp(3), exp(7)} with the degree d set to 12.
-
-<b> 2. Learning the polynomials' weights "coefficients" using all the training data:</b>
-
+<li><b> Learning the polynomials' weights "coefficients" using all the training data:</b></li>
 Once the optimal values d* and λ* for each part have been found, we will learn the regularized coefficient weights of the polynomials found in each part using all the training data.
- 
- <b> 3. Testing the polynomials' accuracy using the testing data </b>
- 
- Finally, we will evaluate the resulting polynomial model on the training and test data, and report the training and test RMSE.
+<li><b> Testing the polynomials' accuracy using the testing data: </b></li>
+Finally, we will evaluate the resulting polynomial model on the training and test data, and report the training and test RMSE for each, respectively. 
+  </ol>
 
-   
-### Dataset
+### Dataset:
 
 1. The dataset represents an indicator that measures the proportion of the working-age population within the total population of the United States of America over time
 note: "indicator" refers to a measure or metric used to track a specific aspect or phenomenon.
@@ -58,13 +53,17 @@ note: "indicator" refers to a measure or metric used to track a specific aspect 
 7. The files train.dat and test.dat contain the training and test datasets, respectively
 8. Each dataset consists of two columns, the first corresponding to the calendar-year values (input) and the second column is the indicator of the working-age population (output)
 
-### Scaling
+### Scaling:
 
 Data is normalized using the "z-score" normalization.  This will help the learning algorithm to output a hypothesis in a more numerically robust and accurate way. Z-score normalization involves applying a simple linear transformation to the input and output values separately, resulting in the average of the values being 0 and the standard deviation being 1. 
 
 The formula to calculating the z-score of a point, x, is as follows:
 
-![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/a9cead32-c7a6-41e0-87a2-939383d73d90)
+![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/cd03a9ba-e862-407a-852b-377e4981ff6d) 
+
+To learn more about z-score normalizaition or standardization, visit the following link:
+
+https://towardsai.net/p/machine-learning/machine-learning-standardization-z-score-normalization-with-mathematics
 
 ### PseudoCode used:
 
@@ -119,67 +118,69 @@ the results of this project include:
 
 1. Averages of the RMSE values obtained during the 6-fold CV for each case plotted against the optimal degree d* and regularization parameter  λ∗ obtained via the 6-fold CV, separately:
 
+![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/8f2a600e-b056-4f2c-bcb3-6ec2627168a9) 
 
-
-
-
+![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/a0aa183b-3acf-4206-8d6f-a74589745c47)
 
 2. the coefficient-weights of the d∗-degree polynomial and the λ∗-regularized 12-degree learned on all the training data
 
 Coefficients of Optimal Degree (6):
 
+![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/621d73ac-2bcd-4ee7-805f-1353b217811e)
 
 Coefficients of Optimal Alpha (e^-3):
 
-
-
+![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/4d1d2ef4-2c3f-4a37-bf7c-c5838ea8f464)
 
  4. the training and test RMSE of that final, learned polynomials, using the training and testing data:
 
 Optimal Alpha e^-3:
 
+![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/519eda81-a481-43b5-8748-35824f9bd171)
 
 Optimal Degree 6:
 
+![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/5e5559b4-7c84-454e-ad04-1eb738c3b672)
 
  5.  the 2 plots containing all the training data along with the resulting polynomial curves for d∗ and λ∗, for the range of years 1968-2023 as input:
 
 Polynomial plots of the optimal degrees: 
 Optimal degree (6):
 
+![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/0ac4c578-3c1a-498c-a5ab-7db3b80ff173)
+
  Optimal alpha e^-3:
-
-
+ 
+![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/29406c7f-fe45-4680-a1ec-9e65bcfe4e28)
 
 <!-- Dataset -->
 
-
-### Built With
+### Built With:
 The frameworks and libraries used within this project are:
 * [![Scikit-learn][scikit-learn.js]][scikit-learn-url]
 * [![TensorFlow][Tensorflow.js]][Tensorflow-url]
 * [![NumPy][NumPy.js]][NumPy-url]
 * [![Matplotlib][Matplotlib.js]][Matplotlib-url]
-* [![Open In Colab](https://img.shields.io/badge/Open%20In-Colab-yellowgreen?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/)
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Getting Started:
 
 To get the project running, there's a couple of programs and steps needed. here are the steps: 
 
-### Prerequisites
+### Prerequisites:
 
-Python: PyCharm is an IDE for Python development. 
-PyCharm:  you can download Pycahrm from JetBrains website.
-Operating system: PyCharm is available for Windows, macOS, and Linux. 
-Hardware requirements: PyCharm has minimum hardware requirements, including a multi-core processor, at least 4 GB of RAM, and a minimum screen resolution of 1024x768.
- Tensorflow, Scikit-learn, NumPy, Matplotlib installed on your computer
+1. Python: PyCharm is an IDE for Python development. 
+2. PyCharm:  you can download Pycahrm from JetBrains website.
+3. Operating system: PyCharm is available for Windows, macOS, and Linux. 
+4. Hardware requirements: PyCharm has minimum hardware requirements, including a multi-core processor, at least 4 GB of RAM, and a minimum screen resolution of 1024x768.
+5. Tensorflow, Scikit-learn, NumPy, Matplotlib installed on your computer
 
 ### Steps to run the code:
 
 1. Download the “model-selection-via-cross-validation” zip file. 
 2. Extract all files found in the zip file:
+
     In the file, you’ll find 6 files, titled:
 
      a. CVfor0to12:  performs the k fold cv using the given training data to select the optimal
@@ -196,26 +197,20 @@ degree.
       
 3. Run each file separately to get the final results of the project
 
-<!-- NEW LABELS IMAGE EXAMPLES -->
-## Image examples
-
-
 <!-- LICENSE -->
-## License
+## License:
 
 No License used.
 
 <!-- CONTACT -->
-## Contact
+## Contact:
 
 Sali E-loh - [@Sali El-loh](https://www.linkedin.com/in/salielloh12/) - ellohsali@gmail.com
 
-
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+## Acknowledgments:
 
-
-* [TensoFlow: Clothes Image Classification Tutorial](https://www.tensorflow.org/tutorials/keras/classification)
+* Special thanks to Professor Luis Ortiz at the University of Michigan - Dearborn for assigning and helping with this project in his Computational Learning class.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
