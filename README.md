@@ -112,6 +112,14 @@ include the optimal parameter found as part of the ridge regression model
 12. Plot the training and test data, the fitted Ridge regression model, and the resulting polynomial
 Curve.
 
+### Built With:
+The frameworks and libraries used within this project are:
+* [![Scikit-learn][scikit-learn.js]][scikit-learn-url]
+* [![TensorFlow][Tensorflow.js]][Tensorflow-url]
+* [![NumPy][NumPy.js]][NumPy-url]
+* [![Matplotlib][Matplotlib.js]][Matplotlib-url]
+
+
 ## Results: 
 the results of this project include: 
 
@@ -153,14 +161,6 @@ Optimal degree (6):
 ![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/29406c7f-fe45-4680-a1ec-9e65bcfe4e28)
 
 <!-- Dataset -->
-
-### Built With:
-The frameworks and libraries used within this project are:
-* [![Scikit-learn][scikit-learn.js]][scikit-learn-url]
-* [![TensorFlow][Tensorflow.js]][Tensorflow-url]
-* [![NumPy][NumPy.js]][NumPy-url]
-* [![Matplotlib][Matplotlib.js]][Matplotlib-url]
-
 
 <!-- GETTING STARTED -->
 ## Getting Started:
