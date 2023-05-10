@@ -127,7 +127,6 @@ The frameworks and libraries used within this project are:
 * [![TensorFlow][Tensorflow.js]][Tensorflow-url]
 * [![NumPy][NumPy.js]][NumPy-url]
 * [![Matplotlib][Matplotlib.js]][Matplotlib-url]
-* 
 
 ### Prerequisites:
 
@@ -152,9 +151,9 @@ degree.
       
       d. Optimal alpha_trained: performs ridge regression for λ* selected using all the data
       
-      e. Test.csv: contains all the test data used in the project
+      e. Test.dat: contains all the test data used in the project
       
-      f. Train.csv: contains all the training data used in the project
+      f. Train.dat: contains all the training data used in the project
       
 3. Run each file separately to get the final results of the project
 
