@@ -52,7 +52,7 @@ note: "indicator" refers to a measure or metric used to track a specific aspect 
 4. The indicator measures the working-age population proportion for non-consecutive years between 1970 and 2021.
 5. The only input attribute is the year.
 6. The output is the (numerical) indicator of the working-age population for the given input year.
-7. The files train.dat and test.dat contain the training and test datasets, respectively.
+7. The files train.csv and test.csv contain the training and test datasets, respectively.
 8. Each dataset consists of two columns, the first corresponding to the calendar-year values (input) and the second column is the indicator of the working-age population (output).
 
 ### Scaling:
@@ -151,9 +151,9 @@ degree.
       
       d. Optimal alpha_trained: performs ridge regression for λ* selected using all the data
       
-      e. Test.dat: contains all the test data used in the project
+      e. Test.csv: contains all the test data used in the project
       
-      f. Train.dat: contains all the training data used in the project
+      f. Train.csv: contains all the training data used in the project
       
 3. Run each file separately to get the final results of the project
 
