@@ -1,4 +1,4 @@
-linear_model import Ridge
+from sklearn.linear_model import Ridge
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import PolynomialFeatures
 import numpy as np
@@ -111,61 +111,10 @@ plt.ylabel('Y')
 plt.legend()
 plt.show()
 
-avg3_cv_train_error = []
-avg3_cv_test_error = []
 
-param_grid3 = {
-    'n_units1': [64, 256],
-    "n_units2": [16, 43],
-    'lr': [4 ** i for i in range(-3, 2)]
-}
 
-param_combinations3 = list(ParameterGrid(param_grid3))
 
-n_hidden_layers = 2
 
-# make sure the nunits are correect
-for params in param_combinations3:
-    global nunits3
-    n_units1 = params['n_units1']
-    n_units2 = params['n_units2']
-    lr = params['lr']
-    nunits3 = [X.shape[1]]
-    for i in range(n_hidden_layers):
-        if i == 0:
-            nunits3.append(n_units1)
-        else:
-            nunits3.append(n_units2)
-    nunits3.append(y_ohe.shape[1])
-    print(nunits3)
-    print(lr)
-
-    nnet3 = NNet(nunits3)
-    cv3 = KFold(n_splits=k, shuffle=False)
-
-    cv3_train_error_fold = []
-    cv3_test_error_fold = []
-
-    for train_idx, val_idx in cv3.split(X):
-        X_train_cv, y_train_ohe_cv = X[train_idx], y_ohe[train_idx]
-        X_val_cv, y_val_ohe_cv = X[val_idx], y_ohe[val_idx]
-
-        opt3 = NNetGDOptimizer(metric=nnet_metric, max_iters=R, learn_rate=lr, change_err_thresh=0, change_thresh=0)
-        best_nnet3 = nnet3.fit(X_train_cv, y_train_ohe_cv, X_val_cv, y_val_ohe_cv, optimizer=opt3, verbose=1)
-
-        training_error_opt3 = [train[0] for train in opt3.train_err]
-        min_train_error = min(training_error_opt3)
-        testing_error_opt3 = [test[0] for test in opt3.test_err]
-        min_test_error = min(testing_error_opt3)
-
-        cv3_train_error_fold.append(min_train_error)
-        cv3_test_error_fold.append(min_test_error)
-
-    avg3_cv_train_error.append(np.mean(cv3_train_error_fold))
-    avg3_cv_test_error.append(np.mean(cv3_test_error_fold))
-
-optimal_test3 = min(avg3_cv_train_error)
-optimal_train3 = min(avg3_cv_test_error)
 
 
 
