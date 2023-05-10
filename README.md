@@ -139,7 +139,14 @@ The frameworks and libraries used within this project are:
 ### Steps to run the code:
 
 1. Download the “model-selection-via-cross-validation” zip file. 
-2. Extract all files found in the zip file:
+2. 
+To do that, simply press on the zip file, then press "view raw" as shown below to download it:
+
+![image](https://github.com/SaliElloh/model-selection-via-cross-validation/assets/112829375/2412942f-c491-4f77-865c-7c7ae27c8a22)
+
+All the files inside that zip files are uploaded seperately as well.
+
+3. Extract all files found in the zip file:
 
     In the file, you’ll find 6 files, titled:
 
