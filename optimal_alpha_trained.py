@@ -60,7 +60,7 @@ descale_y_test= descaled_y(y_test_scaled)
 
 # descale y_train_pred and y_train_scaled
 descale_y_train_pred = descaled_y(y_train_pred)
-descale_y_train = descaled_y(y_train_scaled)
+descale_y_train= descaled_y(y_train_scaled)
 
 # compute the weights of the optimal alpha:
 weights = model.coef_
@@ -120,3 +120,7 @@ plt.xlabel('X')
 plt.ylabel('Y')
 plt.legend()
 plt.show()
+
+
+
+
